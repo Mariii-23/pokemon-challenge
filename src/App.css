@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  padding: 10%;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .App-logo {
@@ -35,4 +37,40 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+input {
+  height: 36px;
+}
+
+button {
+  min-height: 40px;
+  background-color: #e1ecf4;
+  border-radius: 3px;
+
+  border: 1px solid #7aa7c7;
+
+  color: #39739d;
+  cursor: pointer;
+  margin: 0;
+
+  padding: 8px 12px;
+
+  text-align: center;
+}
+
+button:hover,
+button:focus {
+  background-color: #b3d3ea;
+  color: #2c5777;
+}
+
+button:focus {
+  box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+button:active {
+  background-color: #a0c7e4;
+  box-shadow: none;
+  color: #2c5777;
 }

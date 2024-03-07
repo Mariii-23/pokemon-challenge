@@ -62,7 +62,6 @@ const searchPokemon = async (name: string): Promise<IPokemon> => {
         const response = await Axios.get(url)
 
         const data = response.data as IPokemonResponse;
-        console.log(data)
 
         const stat: IStat[] = data.stats.map((element) => ({
           name: element.stat.name,
