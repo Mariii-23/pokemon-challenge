@@ -5,6 +5,12 @@ import { IPokemon } from './pokemon';
 
 const N_MATCHES = 5;
 
+/**
+ * Finds matching strings in a list based on a partial or full input.
+ * @param input - The input string to match against.
+ * @param stringLists - The list of strings to search for matches.
+ * @returns An array of matching strings.
+ */
 const findMatches = (input: string, stringLists: string[]): string[] => {
     if (input === "") 
       return [];
@@ -91,11 +97,10 @@ function App() {
     }
   }
 
-
   return (
     <div className="App">
       <header>
-          <h1>Pokémon Stats</h1>
+          <h1>Pokémon Search</h1>
           <div className="input-suggestions-container">
             <div className="input-container">
               <div className="suggestions-container">

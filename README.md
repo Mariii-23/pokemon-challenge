@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Pokémon Search Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web application allows users to search for Pokémon information by name. It utilizes the [PokéAPI](https://pokeapi.co/) to retrieve data.
+
+## Features availables 
+
+1. Search Pokémon by Name
+2. Display Pokémon Information
+3. Navigation with Previous e Next Buttons
+4. Text-based Search Features
+5. To optimize performance, a caching mechanism has been implemented using `localStorage`.
+
+## Technology Stack:
+
+- **React:** The application is built using React for the frontend.
+- **Axios:** Axios is used for making API requests to the PokéAPI.
+- **localStorage:** Utilized for caching to reduce API calls.
+
 
 ## Available Scripts
 
@@ -39,8 +54,5 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+#  Feel free to explore and search for your favorite Pokémon
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

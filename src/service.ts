@@ -1,8 +1,10 @@
 import Axios from "axios";
 import { IPokemon, IStat } from "./pokemon";
 
+// Base URL for the Pokémon API
 const API = "https://pokeapi.co/api/v2";
 
+// Interface representing the response structure from the Pokémon API
 interface IPokemonResponse {
     id: string,
     name: string,
@@ -23,9 +25,14 @@ interface IPokemonResponse {
     }[],
 }
 
+/**
+ * Retrieves a list of Pokémon names from the PokéAPI.
+ * @returns A promise containing an array of Pokémon names.
+ */
 const getPokemonsName = async (): Promise<string[]> => {
     const cacheKey = "pokemonNames";
 
+    // Check if Pokémon names are cached in local storage
     const cachedNames = localStorage.getItem(cacheKey);
     if (cachedNames) {
       return JSON.parse(cachedNames);
@@ -39,6 +46,7 @@ const getPokemonsName = async (): Promise<string[]> => {
 
         const name = data.results.map((item: {name: string}) => item.name);
 
+        // Cache the Pokémon names in local storage
         localStorage.setItem(cacheKey, JSON.stringify(name));
 
         return name;
@@ -49,9 +57,15 @@ const getPokemonsName = async (): Promise<string[]> => {
 }
 
 
+/**
+ * Searches for a Pokémon by name using the PokéAPI.
+ * @param name - The name of the Pokémon to search for.
+ * @returns A promise containing the Pokémon information.
+ */
 const searchPokemon = async (name: string): Promise<IPokemon> => {
     const cacheKey = `pokemon_search_${name}`;
 
+    // Check if the Pokémon is cached in local storage
     const pokemon = localStorage.getItem(cacheKey);
     if (pokemon) {
       return JSON.parse(pokemon);
@@ -81,6 +95,7 @@ const searchPokemon = async (name: string): Promise<IPokemon> => {
             types: categories,
         } as IPokemon;
 
+        // Cache the Pokémon information in local storage
         localStorage.setItem(cacheKey, JSON.stringify(pokemon));
 
         return pokemon;
@@ -91,6 +106,7 @@ const searchPokemon = async (name: string): Promise<IPokemon> => {
 }
 
 
+// Exported SERVICE containing the Pokémon service functions
 export const POKEMON_SERVICE = {
     searchPokemon,
     getAllNames: getPokemonsName
