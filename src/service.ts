@@ -23,7 +23,40 @@ interface IPokemonResponse {
     }[],
 }
 
+const getPokemonsName = async (): Promise<string[]> => {
+    const cacheKey = "pokemonNames";
+
+    const cachedNames = localStorage.getItem(cacheKey);
+    if (cachedNames) {
+      return JSON.parse(cachedNames);
+    }
+
+    try {
+        const url = `${API}/pokemon/?offset=0&limit=1302`;
+        const response = await Axios.get(url)
+
+        const data = response.data;
+
+        const name = data.results.map((item: {name: string}) => item.name);
+
+        localStorage.setItem(cacheKey, JSON.stringify(name));
+
+        return name;
+    } catch (error) {
+        console.error("Error fetching Pokemons name:", error);
+            throw new Error("Error fetching Pokemons name")
+    }
+}
+
+
 const searchPokemon = async (name: string): Promise<IPokemon> => {
+    const cacheKey = `pokemon_search_${name}`;
+
+    const pokemon = localStorage.getItem(cacheKey);
+    if (pokemon) {
+      return JSON.parse(pokemon);
+    }
+
     try {
         const url = `${API}/pokemon/${name}`;
         const response = await Axios.get(url)
@@ -49,6 +82,8 @@ const searchPokemon = async (name: string): Promise<IPokemon> => {
             types: categories,
         } as IPokemon;
 
+        localStorage.setItem(cacheKey, JSON.stringify(pokemon));
+
         return pokemon;
     } catch (error) {
         console.error("Error fetching Pokemon:", error);
@@ -59,4 +94,5 @@ const searchPokemon = async (name: string): Promise<IPokemon> => {
 
 export const POKEMON_SERVICE = {
     searchPokemon,
+    getAllNames: getPokemonsName
 }
